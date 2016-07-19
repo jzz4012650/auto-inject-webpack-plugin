@@ -1,5 +1,7 @@
 # auto-inject-webpack
-this is a Webpack plugin that can auto inject script label and style links into your html.
+this is a Webpack plugin that can auto inject script label and style links into your html, very useful in multi-entry project.
+
+It is very useful with hash in your dist file name, which can resolve browser cache problem. you can disable hash option in dev mode and enable it in production mode.
 
 ## usage
 
@@ -42,10 +44,10 @@ module.exports = function () {
       ...
     ]
   }
-}   
+}
 ```
 
-in your entry file (index.js as above):
+in your entry file (/res/index.js as above):
 ```javascript
 /* %/view/index.html% */
 // your code...
@@ -67,16 +69,32 @@ in your html file (/view/index.html):
 </body>
 </html>
 ```
-
+final html:
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <!-- css-begin -->
+  <!-- css-end -->
+</head>
+<body>
+  <!-- js-begin -->
+<script src="/dist/bundle.min.js"></script>
+<!-- js-end -->
+</body>
+</html>
+```
 
 ## options
 
-* `outputURI`: server URI of your webpack output folder. 
+* `outputURI`: server URI of your webpack output folder.
   + default: `"/static/build/"`.
-  
+
 * `htmlPlaceholder`: RegExp to match your html path (relative path from package.json) which is designated in your entry file.
   + default: `/\/\*\s*\%(.+)+\%\s*\*\//` which represents `/* %/path/of/your/htmlfile.html% */`.
- 
+
 * `jsPlaceholderBegin`: begin anchor to decide where to inject your script labels. (this anchor is designated in your html file)
   + default: `"<!-- js-begin -->"`
 
