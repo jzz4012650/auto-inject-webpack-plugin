@@ -1,7 +1,5 @@
 # auto-inject-webpack
-this is a Webpack plugin that can auto inject script label and style links into your html, very useful in multi-entry project.
-
-It is very useful with hash in your dist file name, which can resolve browser cache problem. you can disable hash option in dev mode and enable it in production mode.
+this is a Webpack plugin that can auto inject script label and style links into your html, useful in multi-entry project.
 
 ## usage
 
